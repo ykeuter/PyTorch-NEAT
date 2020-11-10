@@ -35,7 +35,7 @@ def make_net(genome, config, bs):
 
 def activate_net(net, states):
     outputs = net.activate(states).numpy()
-    return outputs[:, 0] > 0.5
+    return (outputs[:, 0] > 0.5).astype(int)
 
 
 @click.command()
