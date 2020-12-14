@@ -22,7 +22,7 @@ from neat.reporting import BaseReporter
 
 class LogReporter(BaseReporter):
     def __init__(self, fnm, eval_best, eval_with_debug=False):
-        self.log = open(fnm, "a")
+        self.filename = fnm
         self.generation = None
         self.generation_start_time = None
         self.generation_times = []
@@ -53,7 +53,8 @@ class LogReporter(BaseReporter):
         self.log_dict["n_extinctions"] = self.num_extinctions
 
         pprint(self.log_dict)
-        self.log.write(json.dumps(self.log_dict) + "\n")
+        with open(self.filename, "a") as f:
+            f.write(json.dumps(self.log_dict) + "\n")
 
     def post_evaluate(self, config, population, species, best_genome):
         # pylint: disable=no-self-use
