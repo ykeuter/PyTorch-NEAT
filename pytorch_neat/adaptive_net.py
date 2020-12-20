@@ -108,7 +108,7 @@ class AdaptiveNet:
                 self.hidden_coords, self.output_coords, self.w_ho_node)
 
             self.hidden = torch.zeros((self.batch_size, self.n_hidden, 1),
-                                      dtype=torch.float32)
+                                      dtype=torch.float32, device=self.device)
 
             self.batched_hidden_coords = get_coord_inputs(
                 self.hidden_coords, self.hidden_coords, batch_size=self.batch_size)

@@ -77,7 +77,8 @@ class Node:
         xs: list of torch tensors
         """
         if not xs:
-            return torch.full(shape, self.bias)
+            device = list(self.leaves.values())[0].activs.device
+            return torch.full(shape, self.bias, device=device)
         inputs = [w * x for w, x in zip(self.weights, xs)]
         try:
             pre_activs = self.aggregation(inputs)
