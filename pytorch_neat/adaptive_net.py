@@ -97,7 +97,7 @@ class AdaptiveNet:
 
             self.hidden_to_hidden = self.get_init_weights(
                 self.hidden_coords, self.hidden_coords, self.w_hh_node).unsqueeze(0).expand(
-                    self.batch_size, self.n_hidden, self.n_hidden)
+                    self.batch_size, self.n_hidden, self.n_hidden).clone()
 
             bias_coords = torch.zeros(
                 (1, 2), dtype=torch.float32, device=self.device)
